@@ -1,5 +1,0 @@
-NAME='railway'
-USER='postgres'
-PASSWORD='2a-15FG*CEab244ee21cd-g-5eG2B5ee'
-HOST='roundhouse.proxy.rlwy.net'
-PORT='33262'
