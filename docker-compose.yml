@@ -1,0 +1,32 @@
+---
+# docker compose --env-file ./tmaskpl_env.py
+# cat ./tmaskpl_env.py
+# TAG=v1.6
+
+
+#  cat compose.yml
+# services:
+#   web:
+#     image: "webapp:${TAG}"
+
+
+version: '3'
+
+services:
+  tmaskpl-web:
+    build: .
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    # volumes:
+    #   - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - tmaskpl-postgres
+
+  tmaskpl-postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${NAME}
+      POSTGRES_PORT: ${PORT}
