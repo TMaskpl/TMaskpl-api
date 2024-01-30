@@ -1,5 +1,11 @@
-from tmaskpl_env import *
 from pathlib import Path
+from dotenv import find_dotenv
+from dotenv import load_dotenv
+import os
+
+env_file = find_dotenv("/tmaskpl/.env")
+load_dotenv(env_file)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +20,7 @@ SECRET_KEY = 'django-insecure-_bazxptn289^mu!si=3xe93ifonsaac(!jr5yl+489)e^^@j_l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
 
 # Application definition
@@ -76,12 +82,12 @@ WSGI_APPLICATION = 'tmaskpl_restapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': NAME,
-        'USER': USER,
-        'PASSWORD': PASSWORD,
-        'HOST': HOST,
-        'PORT': PORT,
+        'ENGINE': os.environ.get('ENGINE'), 
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
+        'PORT': os.environ.get('PORT'),
     }
 }
 

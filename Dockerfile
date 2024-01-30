@@ -1,20 +1,16 @@
-# Dockerfile
+FROM python:3
 
-# The first instruction is what image we want to base our container on
-# We Use an official Python runtime as a parent image
-FROM python:3.10
+ENV PYTHONUNBUFFERED 1
 
-# Allows docker to cache installed dependencies between builds
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Mounts the application code to the image
 RUN mkdir /tmaskpl
-COPY . tmaskpl
 WORKDIR /tmaskpl
+COPY . .
+RUN chmod +x /tmaskpl/script.sh
+RUN 
 
 EXPOSE 8000
 
-# runs the production server
-ENTRYPOINT ["python3", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+ENTRYPOINT [ "/tmaskpl/script.sh" ]
