@@ -9,7 +9,6 @@ RUN mkdir /tmaskpl
 WORKDIR /tmaskpl
 COPY . .
 RUN chmod +x /tmaskpl/script.sh
-RUN 
 
 EXPOSE 8000
 
