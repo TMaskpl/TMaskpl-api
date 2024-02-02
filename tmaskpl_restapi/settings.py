@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'base',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ]
+}
+
+GRAPHENE = {
+    'SCHEMA': 'library.schema.schema'
 }
 
 WSGI_APPLICATION = 'tmaskpl_restapi.wsgi.application'
